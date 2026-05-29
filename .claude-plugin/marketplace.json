@@ -1,0 +1,33 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "rolepod-dblab",
+  "description": "Data-layer safety + truth verifier MCP server + 5 shipped skills (db-introspect, db-query, db-explain, db-migrate-verify, db-write) for AI coding agents.",
+  "owner": {
+    "name": "nuttaruj",
+    "url": "https://github.com/nuttaruj"
+  },
+  "plugins": [
+    {
+      "name": "rolepod-dblab",
+      "source": "./",
+      "description": "5 MCP tools (rolepod_db_introspect/query/explain/migrate_verify/write) + 5 user-invocable skills. The data-layer limb of rolepod: introspect schema, assert DB state as verify-evidence, read query plans, detect schema drift (SQLAlchemy vs live), and mutate data behind a transaction preview→confirm→commit/rollback guard. Works standalone with a connection string; pair with the `rolepod` parent plugin (detected via the marker file `<git-root>/.rolepod/parent-active`) and dblab becomes the DB evidence/gate provider — evidence routes to `<git-root>/.rolepod/evidence/` with `manifest.json` per Extension Protocol v1. Postgres-only in v1; see `rolepod-dblab doctor` for readiness.",
+      "version": "0.1.0",
+      "author": {
+        "name": "nuttaruj"
+      },
+      "homepage": "https://github.com/nuttaruj/rolepod-dblab",
+      "repository": "https://github.com/nuttaruj/rolepod-dblab",
+      "license": "MIT",
+      "category": "productivity",
+      "tags": [
+        "mcp",
+        "postgres",
+        "database",
+        "schema-drift",
+        "sql-safety",
+        "migration",
+        "ai-agents"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "name": "rolepod-dblab",
+  "owner": {
+    "name": "nuttaruj"
+  },
+  "metadata": {
+    "description": "Data-layer safety + truth verifier MCP server + 5 shipped skills for AI coding agents.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "rolepod-dblab",
+      "source": ".",
+      "description": "5 MCP tools + 5 skills. Introspect schema, assert DB state as verify-evidence, EXPLAIN plans, detect schema drift (SQLAlchemy vs live), and mutate data behind a transaction preview→confirm→commit/rollback guard. Postgres-only in v1.",
+      "version": "0.1.0",
+      "author": {
+        "name": "nuttaruj"
+      },
+      "homepage": "https://github.com/nuttaruj/rolepod-dblab",
+      "repository": "https://github.com/nuttaruj/rolepod-dblab",
+      "license": "MIT",
+      "keywords": [
+        "mcp",
+        "postgres",
+        "database",
+        "schema-drift",
+        "ai-agents"
+      ]
+    }
+  ]
+}

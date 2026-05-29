@@ -1,0 +1,20 @@
+{
+  "name": "rolepod-dblab",
+  "displayName": "Rolepod DBLab",
+  "version": "0.1.0",
+  "description": "Data-layer safety + truth verifier MCP server + 5 shipped skills (db-introspect, db-query, db-explain, db-migrate-verify, db-write) for AI coding agents. Works standalone with a connection string; pair with the `rolepod` parent plugin (detected via the marker file `<git-root>/.rolepod/parent-active`) and dblab becomes the DB evidence/gate provider — evidence routes to `<git-root>/.rolepod/evidence/` with `manifest.json` per Extension Protocol v1. Not a generic SQL client: safe mutation, schema-drift, DB state as PASS/FAIL evidence.",
+  "author": {
+    "name": "nuttaruj"
+  },
+  "homepage": "https://github.com/nuttaruj/rolepod-dblab",
+  "repository": "https://github.com/nuttaruj/rolepod-dblab",
+  "license": "MIT",
+  "keywords": [
+    "mcp",
+    "postgres",
+    "database",
+    "schema-drift",
+    "sql-safety",
+    "cursor"
+  ]
+}

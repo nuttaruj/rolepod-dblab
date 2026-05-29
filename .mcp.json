@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "rolepod-dblab": {
+      "command": "npx",
+      "args": ["-y", "@rolepod/dblab"],
+      "env": {}
+    }
+  }
+}

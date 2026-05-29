@@ -1,0 +1,11 @@
+{
+  "name": "rolepod-dblab",
+  "version": "0.1.0",
+  "description": "Data-layer safety + truth verifier for AI agents — introspect a live Postgres schema, assert DB state as PASS/FAIL verify-evidence, read EXPLAIN query plans, detect schema drift (SQLAlchemy models vs live), and mutate data behind a transaction preview→confirm→commit/rollback guard. 5 MCP tools + 5 skills. Postgres-only in v1.",
+  "mcpServers": {
+    "rolepod-dblab": {
+      "command": "npx",
+      "args": ["-y", "@rolepod/dblab"]
+    }
+  }
+}

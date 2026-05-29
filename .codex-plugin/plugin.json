@@ -1,0 +1,38 @@
+{
+  "name": "rolepod-dblab",
+  "version": "0.1.0",
+  "description": "Data-layer safety + truth verifier for AI agents — 5 shipped skills (db-introspect, db-query, db-explain, db-migrate-verify, db-write) + MCP server with 5 rolepod_db_* tools. Works standalone with a connection string; pair with the `rolepod` parent plugin (detected via the marker file `<git-root>/.rolepod/parent-active`) and dblab becomes the DB evidence/gate provider.",
+  "author": {
+    "name": "nuttaruj",
+    "url": "https://github.com/nuttaruj"
+  },
+  "homepage": "https://github.com/nuttaruj/rolepod-dblab",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nuttaruj/rolepod-dblab"
+  },
+  "license": "MIT",
+  "keywords": [
+    "mcp",
+    "postgres",
+    "database",
+    "schema-drift",
+    "sql-safety"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Rolepod DBLab",
+    "shortDescription": "Data-layer safety + truth verifier — introspect, assert state, EXPLAIN, schema-drift, guarded writes.",
+    "longDescription": "rolepod-dblab ships an MCP server with 5 tools (rolepod_db_introspect, rolepod_db_query, rolepod_db_explain, rolepod_db_migrate_verify, rolepod_db_write) and 5 user-invocable skills. It gives a coding agent eyes + safe hands on a live Postgres: prove a migration applied, assert DB state as verify-evidence, read query plans, detect schema drift between SQLAlchemy models and the live DB, and mutate data behind a transaction preview→confirm→commit/rollback guard. It is NOT a generic SQL client. Pair with the `rolepod` parent plugin (detected via the marker file `<git-root>/.rolepod/parent-active`) and evidence routes to `<git-root>/.rolepod/evidence/` with a `manifest.json` per Extension Protocol v1. Postgres-only in v1.",
+    "developerName": "nuttaruj",
+    "category": "Productivity",
+    "capabilities": ["Read", "Write", "Bash"],
+    "websiteURL": "https://github.com/nuttaruj/rolepod-dblab",
+    "defaultPrompt": [
+      "Use /db-query to assert a row exists with the expected value after my change.",
+      "Use /db-migrate-verify to check the live schema against my SQLAlchemy models before shipping.",
+      "Use /db-write to apply a data fix safely behind a transaction preview → confirm guard."
+    ]
+  }
+}
