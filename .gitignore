@@ -6,3 +6,6 @@ coverage/
 .rolepod-dblab/
 .rolepod/
 *.tsbuildinfo
+
+# npm pack artifacts
+*.tgz
