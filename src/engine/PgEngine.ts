@@ -1,5 +1,5 @@
 import type { Client } from "pg";
-import { RolepodMcpError } from "../util/errors.js";
+import { RolepodMcpError, scrubConnUri } from "../util/errors.js";
 import type {
   SchemaSnapshot,
   TableInfo,
@@ -288,7 +288,7 @@ export class PgEngine {
 /** Strip a raw connection string (and any postgres URI) from an error message. */
 function redactConn(message: string, conn: string): string {
   const scrubbed = conn ? message.split(conn).join("<connection-string>") : message;
-  return scrubbed.replace(/postgres(?:ql)?:\/\/\S+/gi, "<connection-string>");
+  return scrubConnUri(scrubbed);
 }
 
 function normalizeType(r: {

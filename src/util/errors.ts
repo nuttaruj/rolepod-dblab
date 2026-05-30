@@ -36,3 +36,14 @@ export class RolepodMcpError extends Error {
     };
   }
 }
+
+/**
+ * Scrub any Postgres connection URI (which carries the password) out of a
+ * string before it reaches logs or MCP clients. The single source of truth for
+ * what a redacted secret looks like — used by the engine's connect-error path
+ * and as a defensive net in the tool failure serializer, so a leak can't slip
+ * through if a future throw site forgets to redact.
+ */
+export function scrubConnUri(s: string): string {
+  return s.replace(/postgres(?:ql)?:\/\/\S+/gi, "<connection-string>");
+}

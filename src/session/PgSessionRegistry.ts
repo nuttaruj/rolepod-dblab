@@ -30,14 +30,21 @@ export class PgSessionRegistry {
   /** Open a connection, BEGIN, and register the held session. */
   async open(connectionString: string): Promise<PgSession> {
     const client = await this.engine.connect(connectionString);
-    await client.query("BEGIN");
-    // Defense-in-depth: Postgres aborts the transaction itself if it sits idle
-    // past the timeout, independent of the JS sweep below — so a blocked Node
-    // event loop can't let a held transaction keep its row locks indefinitely.
-    if (this.idleTimeoutMs > 0) {
-      await client
-        .query(`SET idle_in_transaction_session_timeout = ${Math.floor(this.idleTimeoutMs)}`)
-        .catch(() => undefined);
+    try {
+      await client.query("BEGIN");
+      // Defense-in-depth: Postgres aborts the transaction itself if it sits idle
+      // past the timeout, independent of the JS sweep below — so a blocked Node
+      // event loop can't let a held transaction keep its row locks indefinitely.
+      if (this.idleTimeoutMs > 0) {
+        await client
+          .query(`SET idle_in_transaction_session_timeout = ${Math.floor(this.idleTimeoutMs)}`)
+          .catch(() => undefined);
+      }
+    } catch (err) {
+      // BEGIN failed — close the connection so it doesn't leak (the session was
+      // never registered, so nothing else will end it).
+      await client.end().catch(() => undefined);
+      throw err;
     }
     const now = Date.now();
     const session: PgSession = {

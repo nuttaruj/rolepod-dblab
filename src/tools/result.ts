@@ -1,5 +1,5 @@
 import type { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
-import { RolepodMcpError } from "../util/errors.js";
+import { RolepodMcpError, scrubConnUri } from "../util/errors.js";
 
 /**
  * Pack a successful tool result into the MCP wire format. The same value is
@@ -26,7 +26,10 @@ export function failure(err: unknown): CallToolResult {
       structuredContent: payload as unknown as Record<string, unknown>,
     };
   }
-  const message = err instanceof Error ? err.message : String(err);
+  // Defensive: scrub any connection URI in case a raw (non-RolepodMcpError)
+  // throw site carried one — the engine redacts at its connect path, this is
+  // the belt-and-suspenders net for every other error reaching a client.
+  const message = scrubConnUri(err instanceof Error ? err.message : String(err));
   const payload = { code: "engine_error" as const, message };
   return {
     isError: true,

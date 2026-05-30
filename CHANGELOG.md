@@ -2,6 +2,15 @@
 
 All notable changes to rolepod-dblab are documented here. This project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.1.1] — 2026-05-30
+
+Hardening — no behavior change.
+
+### Fixed
+
+- **Connection leak on `BEGIN` failure** (`PgSessionRegistry.open`): if `BEGIN` threw after a successful connect, the `pg` client was never closed. Now wrapped so the connection is ended on failure.
+- **Defensive secret redaction** (`tools/result.ts`): the tool failure serializer now scrubs any Postgres connection URI from error messages — a belt-and-suspenders net so a leak can't slip through if a throw site outside the engine's connect path ever carries one. Centralized the scrub as `scrubConnUri` (single source of truth, shared with the engine's connect-error redaction).
+
 ## [0.1.0] — 2026-05-29
 
 Initial release — the data-layer limb of the rolepod ecosystem. Postgres-only.

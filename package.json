@@ -1,6 +1,6 @@
 {
   "name": "@rolepod/dblab",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Data-layer safety + truth verifier for AI agents — MCP server + shipped skills. Introspect schema, assert DB state as verify-evidence, read query plans, detect schema drift, and mutate data behind a transaction-confirm guard.",
   "keywords": [
     "mcp",
